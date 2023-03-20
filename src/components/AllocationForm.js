@@ -62,6 +62,12 @@ const AllocationForm = (props) => {
                     <input
                         required='required'
                         type='number'
+                        onKeyPress={(event) => {
+                            if (!/[0-9]/.test(event.key)) {
+                              event.preventDefault();
+                            }
+                          }}
+                        max={ remaining }
                         id='cost'
                         value={cost}
                         style={{ marginLeft: '2rem' , size: 10}}
