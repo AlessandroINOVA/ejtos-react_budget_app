@@ -8,7 +8,7 @@ const Budget = () => {
     }, 0);
     return (
         <div className='alert alert-secondary'>
-            <span>Budget: £<input
+            <span>Budget: <br></br>£<input
         type='number'
         onKeyPress={(event) => {
             if (!/[0-9]/.test(event.key)) {
@@ -18,7 +18,7 @@ const Budget = () => {
         id='budget'
         step="10"
         defaultValue={budget}
-        style={{ marginLeft: '2rem' , size: 10}}
+        style={{ marginLeft: '0rem' , size: 10}}
             onChange={(event) => {
                 if(event.target.value > 20000) {
                     alert("Budget can not exceed 20000");
