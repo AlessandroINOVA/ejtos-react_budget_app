@@ -21,7 +21,7 @@ const Budget = () => {
         style={{ marginLeft: '0rem' , size: 10}}
             onChange={(event) => {
                 if(event.target.value > 20000) {
-                    alert("Budget can not exceed 20000");
+                    alert(`Budget can not exceed ${currency}20000`);
                     event.target.value = 20000;
                 }
                 if(event.target.value < totalExpenses){
