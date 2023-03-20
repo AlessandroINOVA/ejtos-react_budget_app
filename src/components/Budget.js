@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 const Budget = () => {
     const { budget, dispatch } = useContext(AppContext);
-    const { expenses } = useContext(AppContext);
+    const { expenses, currency } = useContext(AppContext);
     const totalExpenses = expenses.reduce((total, item) => {
         return (total += item.cost);
     }, 0);
     return (
         <div className='alert alert-secondary'>
-            <span>Budget: <br></br>£<input
+            <span>Budget: <br></br>{currency}<input
         type='number'
         onKeyPress={(event) => {
             if (!/[0-9]/.test(event.key)) {
