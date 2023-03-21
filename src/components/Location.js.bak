@@ -13,7 +13,7 @@ const Location = () => {
 
   return (
         <div className='alert alert-secondary'> Currency: <br></br>{
-      <select defaultValue={currency} style={{ backgroundColor: 'rgba(232,234,246,1.0)', height: '40px' }} name="Location" id="Location" onChange={event=>changeLocation(event.target.value)}>
+      <select defaultValue={currency} style={{ backgroundColor: 'rgba(197,202,233,1.0)', height: '40px' }} name="Location" id="Location" onChange={event=>changeLocation(event.target.value)}>
         <option value="£">£ Pound</option>
         <option value="₹">₹ Ruppee</option>
         <option value="€">€ Euro</option>

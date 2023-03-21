@@ -1,0 +1,54 @@
+import React, { useContext } from 'react';
+import { AppContext, initialState } from '../context/AppContext';
+const Budget = () => {
+    const { budget, dispatch } = useContext(AppContext);
+    const { expenses, currency } = useContext(AppContext);
+	React.useEffect(() => {
+		const json = localStorage.getItem("budget");
+		const loadedBudget = JSON.parse(json);
+		if(loadedBudget !== initialState.budget){
+			dispatch({type: 'SET_BUDGET', payload: loadedBudget});
+			console.log("local storage loaded budget: "+loadedBudget);
+		}
+	}, [dispatch]);
+	React.useEffect(() => {
+		const json = JSON.stringify(budget);
+		if(json !== initialState.budget.toString()){
+			localStorage.setItem("budget", json);
+			console.log("local storage set budget: "+json);
+		}
+	}, [budget]);
+    const totalExpenses = expenses.reduce((total, item) => {
+        return (total += item.cost);
+    }, 0);
+    return (
+        <div className='alert alert-secondary'>
+            <span>Budget: <br></br>{currency}<input
+        type='number'
+        onKeyPress={(event) => {
+            if (!/[0-9]/.test(event.key)) {
+              event.preventDefault();
+            }
+          }}
+        id='budget'
+        step="10"
+        defaultValue={budget}
+        style={{ marginLeft: '0rem' , size: 10}}
+            onChange={(event) => {
+                if(event.target.value > 20000) {
+                    alert(`Budget can not exceed ${currency}20000`);
+                    event.target.value = 20000;
+                }
+                if(event.target.value < totalExpenses){
+                    alert("You cannot reduce the budget value lower than the spending");
+                    event.target.value = totalExpenses;
+                }
+                dispatch({type: 'SET_BUDGET', payload: event.target.value});
+            }
+        }>
+        </input></span>
+        </div>
+        
+    );
+};
+export default Budget;
